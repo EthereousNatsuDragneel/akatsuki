@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
-import {createBottomTabNavigator,createAppContainer} from 'react-navigation'
+import {createBottomTabNavigator} from 'react-navigation-tabs'
+import {createAppContainer} from 'react-navigation'
 import FriendScreen from './screens/FriendScreen.js'
 import InstructionsScreen from './screens/InstructionsScreen.js'
 import ItemsScreen from './screens/ItemsScreen.js'
