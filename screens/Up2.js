@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Image,View,Text,TouchableOpacity} from 'react-native'
 import {connect} from 'react-redux'
-class Left2 extends Component{
+class Up2 extends Component{
 constructor(props){
 super(props)
 this.state={hStep:16,vStep:16,vAlternate:0,hAlternate:0,c:1,kekadu:this.props.FRest}}
@@ -15,7 +15,7 @@ this.props.kdown()}
 else{this.setState(previousState=>({kekadu:this.props.DWalk2,vAlternate:1,c:-1}))
 this.props.kdown()}
 this.walking=setTimeout(this.walkDown,300)}
-else if(this.props.y>304){this.props.GoMonkey()}
+else if(this.props.y>304){this.props.GoUp1()}
 else{this.setState(previousState=>({kekadu:this.props.DRest}))}}
 walkUp=()=>{if(this.props.y>144 || this.props.x>80 && this.props.x<240){
 //walkUp code
@@ -27,7 +27,7 @@ this.props.kup()}
 else{this.setState(previousState=>({kekadu:this.props.FWalk2,vAlternate:1,c:-1}))
 this.props.kup()}
 this.walking=setTimeout(this.walkUp,300)}
-else if(this.props.y<16){this.props.GoDonkey()}
+else if(this.props.y<16){this.props.GoUp3()}
 else{this.setState(previousState=>({kekadu:this.props.FRest}))}}
 walkLeft=()=>{if(this.props.x>16){
 //walkLeft Code
@@ -39,7 +39,7 @@ this.props.kleft()}
 else{this.setState(previousState=>({kekadu:this.props.LWalk2,hAlternate:1,c:-1}))
 this.props.kleft()}
 this.walking=setTimeout(this.walkLeft,300)}
-else if(this.props.x<16){this.props.GoLeft3()}
+else if(this.props.x<16){this.props.GoUp2Left1()}
 else{this.setState(previousState=>({kekadu:this.props.LRest}))}}
 walkRight=()=>{if(this.props.x<304){
 //walkRight code
@@ -51,7 +51,7 @@ this.props.kright()}
 else{this.setState(previousState=>({kekadu:this.props.RWalk2,hAlternate:1,c:-1}))
 this.props.kright()}
 this.walking=setTimeout(this.walkRight,300)}
-else if(this.props.x>304){this.props.GoLeft1()}
+else if(this.props.x>304){this.props.GoUp2Right1()}
 else{this.setState(previousState=>({kekadu:this.props.RRest}))}}
 stop=()=>clearTimeout(this.walking)
 render(){return(<View style={{flex:1}}><View style={{height:'70%',width:'100%',backgroundColor:"green",flexDirection:"row"}}>
@@ -80,7 +80,7 @@ function mapStateToProps(state){
 return{up:state.up,down:state.down,right:state.right,left:state.left,DRest:state.DRest,DWalk1:state.DWalk1,DWalk2:state.DWalk2,FRest:state.FRest,FWalk1:state.FWalk1,FWalk2:state.FWalk2,LRest:state.LRest,LWalk1:state.LWalk1,LWalk2:state.LWalk2,RRest:state.RRest,RWalk1:state.RWalk1,RWalk2:state.RWalk2,Tree:state.Tree,x:state.x,y:state.y}}
 
 function mapDispatchToProps(dispatch){
-return{GoLeft1:()=>dispatch({type:'Go_Left1'}),GoLeft3:()=>dispatch({type:'Go_Left3'}),GoMonkey:()=>dispatch({type:'Go_Monkey'}),GoDonkey:()=>dispatch({type:'Go_Donkey'}),
+return{GoUp1:()=>dispatch({type:'Go_Up1'}),GoUp2Left1:()=>dispatch({type:'Go_Up2Left1'}),GoUp2Right1:()=>dispatch({type:'Go_Up2Right1'}),GoUp3:()=>dispatch({type:'Go_Up3'}),
 kleft:()=>dispatch({type:'kleft'}),kright:()=>dispatch({type:'kright'}),kup:()=>dispatch({type:'kup'}),kdown:()=>dispatch({type:'kdown'})}}
 
-export default connect(mapStateToProps,mapDispatchToProps)(Left2)
+export default connect(mapStateToProps,mapDispatchToProps)(Up2)
