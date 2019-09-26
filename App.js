@@ -18,29 +18,89 @@ const initialState={up:require("./images/KeyboardKeyUp.png"),down:require("./ima
 DBird:require("./images/spriteart/DBird.png"),FBird:require("./images/spriteart/FBird.png"),LBird:require("./images/spriteart/LBird.png"),RBird:require("./images/spriteart/RBird.png"),DDonkey:require("./images/spriteart/DDonkey.png"),FDonkey:require("./images/spriteart/FDonkey.png"),LDonkey:require("./images/spriteart/LDonkey.png"),RDonkey:require("./images/spriteart/RDonkey.png"),DMonkey:require("./images/spriteart/DMonkey.png"),FMonkey:require("./images/spriteart/FMonkey.png"),LMonkey:require("./images/spriteart/LMonkey.png"),RMonkey:require("./images/spriteart/RMonkey.png"),DRabbit:require("./images/spriteart/DRabbit.png"),FRabbit:require("./images/spriteart/FRabbit.png"),LRabbit:require("./images/spriteart/LRabbit.png"),RRabbit:require("./images/spriteart/RRabbit.png"),DFox:require("./images/spriteart/DFox.png"),FFox:require("./images/spriteart/FFox.png"),LFox:require("./images/spriteart/LFox.png"),RFox:require("./images/spriteart/RFox.png"),
 BananaCount:0,CarrotCount:0,MedicineCount:0,x:160,y:160,gameNow:"FriendScreen"}
 const reducer=(state=initialState,action)=>{switch(action.type){
+case 'Go_Up2Left1':
+if(state.gameNow=="Up2"){return{gameNow:"Up2Left1",x:304}}
+return{gameNow:"Up2Left1",x:16}
+case 'Go_Up2Left2':
+return{gameNow:"Up2Left2",x:304}
+case 'Go_Up2Right1':
+if(state.gameNow=="Up2"){return{gameNow:"Up2Right1",x:16}}
+return{gameNow:"Up2Right2",x:304}
+case 'Go_Up2Right2':
+return{gameNow:"Up2Right2",x:16}
+case 'Go_Up2':
+if(state.gameNow=="Up1"){return{gameNow:"Up2",y:304}}
+if(state.gameNow=="Up2Left1"){return{gameNow:"Up2Left1",x:16}}
+if(state.gameNow=="Up2Right1"){return{gameNow:"Up2Right1",x:304}}
+return{gameNow:"Up2",y:16}
+case 'Go_Up3Left1':
+if(state.gameNow=="Up3"){return{gameNow:"Up3Left1",x:304}}
+return{gameNow:"Up3Left1",x:16}
+case 'Go_Up3Left2':
+return{gameNow:"Up3Left2",x:304}
+case 'Go_Up3Right1':
+if(state.gameNow=="Up3"){return{gameNow:"Up3Right1",x:16}}
+return{gameNow:"Up3Right2",x:304}
+case 'Go_Up3Right2':
+return{gameNow:"Up3Right2",x:16}
+case 'Go_Up3':
+if(state.gameNow=="Up2"){return{gameNow:"Up3",y:304}}
+if(state.gameNow=="Up3Left1"){return{gameNow:"Up3Left1",x:16}}
+if(state.gameNow=="Up3Right1"){return{gameNow:"Up3Right1",x:304}}
+return{gameNow:"Up3",y:16}
+case 'Go_Up2Left1':
+if(state.gameNow=="Up2"){return{gameNow:"Up2Left1",x:304}}
+return{gameNow:"Up2Left1",x:16}
+case 'Go_Up2Left2':
+return{gameNow:"Up2Left2",x:304}
+case 'Go_Up4':
+return{gameNow:"Up4",y:16}
+case 'Go_Up2Right1':
+if(state.gameNow=="Up2"){return{gameNow:"Up2Right1",x:16}}
+return{gameNow:"Up2Right2",x:304}
+case 'Go_Up2Right2':
+return{gameNow:"Up2Right2",x:16}
+case 'Go_Up2':
+if(state.gameNow=="Up1"){return{gameNow:"Up2",y:304}}
+if(state.gameNow=="Up1Left1"){return{gameNow:"Up2Left1",x:16}}
+if(state.gameNow=="Up2Right1"){return{gameNow:"Up2Right1",x:304}}
+return{gameNow:"Up2",y:16}
+
+case 'Go_Up1Left1':
+if(state.gameNow=="Up1"){return{gameNow:"Up1Left1",x:304}}
+return{gameNow:"Up1Left1",x:16}
+case 'Go_Up1Left2':
+return{gameNow:"Up1Left2",x:304}
+case 'Go_Up1Right1':
+if(state.gameNow=="Up1"){return{gameNow:"Up1Right1",x:16}}
+return{gameNow:"Up1Right2",x:304}
+case 'Go_Up1Right2':
+return{gameNow:"Up1Right2",x:16}
 case 'Go_Left3':
-if(state.gameNow==Left2){return{gameNow:Left3,x:304}}
-return{gameNow:Left3,x:16}
+if(state.gameNow==Left2){return{gameNow:"Left3",x:304}}
+return{gameNow:"Left3",x:16}
 case 'Go_Left4':
-return{gameNow:Left4,x:304}
+return{gameNow:"Left4",x:304}
 case 'Go_Monkey':
-return{gameNow:MonkeyScreen,y:16}
+return{gameNow:"MonkeyScreen",y:16}
 case 'Go_Donkey':
-return{gameNow:DonkeyScreen,y:304}
+return{gameNow:"DonkeyScreen",y:304}
 case 'Go_Left1':
 if(state.x<50){return{gameNow:"Left1",x:304}}
 return{gameNow:"Left1",x:16}
 case 'Go_FriendScreen':
 if(state.x>280){return{gameNow:"FriendScreen",x:16}}
 return{gameNow:"FriendScreen",y:16}
-//edit the following later
 case 'Go_Up1':
-return{gameNow:Up1}
+if(state.gameNow=="FriendScreen"){return{gameNow:"Up1",y:304}}
+if(state.gameNow=="Up1Left1"){return{gameNow:"Up1Left1",x:16}}
+if(state.gameNow=="Up1Right1"){return{gameNow:"Up1Right1",x:304}}
+return{gameNow:"Up1",y:16}
 case 'Go_Left2':
-if(state.gameNow==Left1){return{gameNow:Left2,x:304}}
-if(state.gameNow==Left3){return{gameNow:Left2,x:16}}
-if(state.gameNow==DonkeyScreen){return{gameNow:Left2,y:16}}
-return{gameNow:Left2,y:304}
+if(state.gameNow==Left1){return{gameNow:"Left2",x:304}}
+if(state.gameNow==Left3){return{gameNow:"Left2",x:16}}
+if(state.gameNow==DonkeyScreen){return{gameNow:"Left2",y:16}}
+return{gameNow:"Left2",y:304}
 case 'kleft':
 return{x:state.x-16}
 case 'kright':
