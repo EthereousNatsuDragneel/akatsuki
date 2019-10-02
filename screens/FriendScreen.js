@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
-import {View,Dimensions,Image,Button,ImageBackground,TouchableOpacity,Text,Alert} from 'react-native'
+import {BackHandler,View,Dimensions,Image,Button,ImageBackground,TouchableOpacity,Text,Alert} from 'react-native'
 import {connect} from 'react-redux'
+
 const {width,height}=Dimensions.get("window")
 class FriendScreen extends Component{
 constructor(props){
@@ -27,7 +28,7 @@ this.props.kup()}
 else{this.setState(previousState=>({kekadu:this.props.FWalk2,vAlternate:1,c:-1}))
 this.props.kup()}
 this.walking=setTimeout(this.walkUp,300)}
-else if(this.props.y<16){this.props.GoUp1()}
+//else if(this.props.y<16){this.props.GoUp1()}
 else{this.setState(previousState=>({kekadu:this.props.FRest}))}}
 walkLeft=()=>{if(this.props.x>80 || this.props.y>144){
 //walkLeft Code
@@ -39,7 +40,8 @@ this.props.kleft()}
 else{this.setState(previousState=>({kekadu:this.props.LWalk2,hAlternate:1,c:-1}))
 this.props.kleft()}
 this.walking=setTimeout(this.walkLeft,300)}
-else if(this.props.x<16){this.props.GoLeft1()}
+else if(this.props.x<16){this.props.GoLeft1()
+this.props.navigation.navigate('Left1')}
 else{this.setState(previousState=>({kekadu:this.props.LRest}))}}
 walkRight=()=>{if(this.props.x<240){
 //walkRight code
