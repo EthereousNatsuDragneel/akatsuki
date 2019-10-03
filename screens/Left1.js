@@ -89,7 +89,7 @@ function mapStateToProps(state){
 return{up:state.up,down:state.down,right:state.right,left:state.left,DRest:state.DRest,DWalk1:state.DWalk1,DWalk2:state.DWalk2,FRest:state.FRest,FWalk1:state.FWalk1,FWalk2:state.FWalk2,LRest:state.LRest,LWalk1:state.LWalk1,LWalk2:state.LWalk2,RRest:state.RRest,RWalk1:state.RWalk1,RWalk2:state.RWalk2,Tree:state.Tree,x:state.x,y:state.y}}
 
 function mapDispatchToProps(dispatch){
-return{GoLeft2:()=>dispatch({type:'Go_Left2'}),GoFriendScreen:()=>dispatch({type:'Go_FriendScreen'}),
+return{GoFriendScreen:()=>dispatch({type:'Go_FriendScreen'}),
 kleft:()=>dispatch({type:'kleft'}),kright:()=>dispatch({type:'kright'}),kup:()=>dispatch({type:'kup'}),kdown:()=>dispatch({type:'kdown'})}}
 
 export default connect(mapStateToProps,mapDispatchToProps)(Left1)
