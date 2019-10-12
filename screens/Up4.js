@@ -15,8 +15,9 @@ this.props.kdown()}
 else{this.setState(previousState=>({kekadu:this.props.DWalk2,vAlternate:1,c:-1}))
 this.props.kdown()}
 this.walking=setTimeout(this.walkDown,300)}
-else if(this.props.y>304){this.props.GoUp3()}
-else{this.setState(previousState=>({kekadu:this.props.DRest}))}}
+else{this.setState(previousState=>({kekadu:this.props.DRest}))
+this.props.GoUp3()
+this.props.navigation.navigate('Up3')}}
 walkUp=()=>{if(this.props.y>80){
 //walkUp code
 if(this.state.vAlternate==0){
@@ -28,7 +29,8 @@ else{this.setState(previousState=>({kekadu:this.props.FWalk2,vAlternate:1,c:-1})
 this.props.kup()}
 this.walking=setTimeout(this.walkUp,300)}
 else{this.setState(previousState=>({kekadu:this.props.FRest}))
-this.props.GetBanana()}}
+if(this.props.item==0){
+this.props.GetBanana()}}}
 walkLeft=()=>{if(this.props.x>80){
 //walkLeft Code
 if(this.state.hAlternate==0){
@@ -55,11 +57,11 @@ stop=()=>clearTimeout(this.walking)
 render(){return(<View style={{flex:1}}><View style={{height:'70%',width:'100%',backgroundColor:"green",flexDirection:"row"}}>
 <Image source={this.state.kekadu} style={{position:'absolute',x:this.props.x,y:this.props.y,height:32,width:32}}/>
 
-<Image source={this.props.Tree} style={{top:32,left:32,height:64,width:64,position:'absolute'}}/>
-<Image source={this.props.Tree} style={{top:32,left:288,height:64,width:64,position:'absolute'}}/>
-<Image source={this.props.Tree} style={{top:32,left:224,height:64,width:64,position:'absolute'}}/>
-<Image source={this.props.Tree} style={{top:32,left:160,height:64,width:64,position:'absolute'}}/>
-<Image source={this.props.Tree} style={{top:32,left:96,height:64,width:64,position:'absolute'}}/>
+<Image source={this.props.BananaTree} style={{top:32,left:32,height:64,width:64,position:'absolute'}}/>
+<Image source={this.props.BananaTree} style={{top:32,left:288,height:64,width:64,position:'absolute'}}/>
+<Image source={this.props.BananaTree} style={{top:32,left:224,height:64,width:64,position:'absolute'}}/>
+<Image source={this.props.BananaTree} style={{top:32,left:160,height:64,width:64,position:'absolute'}}/>
+<Image source={this.props.BananaTree} style={{top:32,left:96,height:64,width:64,position:'absolute'}}/>
 
 <Image source={this.props.Tree} style={{position:'absolute',left:32,top:160,width:64,height:64}}/>
 <Image source={this.props.Tree} style={{position:'absolute',top:224,left:32,width:64,height:64}}/>
@@ -75,12 +77,12 @@ render(){return(<View style={{flex:1}}><View style={{height:'70%',width:'100%',b
 <View style={{flex:1,flexDirection:"row"}}>
 <View style={{flex:1,alignSelf:"stretch",backgroundColor:"black"}}/>
 <View style={{flex:1,alignSelf:"stretch"}}>
-<TouchableOpacity onPressIn={this.walkUp} onPressOut={this.stop}><Image source={this.props.kup} style={{height:'100%',width:'100%'}}/></TouchableOpacity>
+<TouchableOpacity onPressIn={this.walkUp} onPressOut={this.stop}><Image source={this.props.up} style={{height:'100%',width:'100%'}}/></TouchableOpacity>
 </View><View style={{flex:1,alignSelf:"stretch",backgroundColor:"black"}}/></View>
 <View style={{flex:1,flexDirection:"row"}}><View style={{flex:1,alignSelf:"stretch"}}>
-<TouchableOpacity onPressIn={this.walkLeft} onPressOut={this.stop}><Image style={{height:'100%',width:'100%'}} source={this.props.kleft}/></TouchableOpacity></View>
-<View style={{flex:1,alignSelf:"stretch"}}><TouchableOpacity onPressIn={this.walkDown} onPressOut={this.stop}><Image style={{height:'100%',width:'100%'}} source={this.props.kdown}/></TouchableOpacity></View>
-<View style={{flex:1,alignSelf:"stretch"}}><TouchableOpacity onPressIn={this.walkRight} onPressOut={this.stop}><Image style={{height:'100%',width:'100%'}} source={this.props.kright}/></TouchableOpacity></View>
+<TouchableOpacity onPressIn={this.walkLeft} onPressOut={this.stop}><Image style={{height:'100%',width:'100%'}} source={this.props.left}/></TouchableOpacity></View>
+<View style={{flex:1,alignSelf:"stretch"}}><TouchableOpacity onPressIn={this.walkDown} onPressOut={this.stop}><Image style={{height:'100%',width:'100%'}} source={this.props.down}/></TouchableOpacity></View>
+<View style={{flex:1,alignSelf:"stretch"}}><TouchableOpacity onPressIn={this.walkRight} onPressOut={this.stop}><Image style={{height:'100%',width:'100%'}} source={this.props.right}/></TouchableOpacity></View>
 </View></View>)}}
 
 function mapStateToProps(state){
@@ -88,7 +90,7 @@ return{up:state.up,down:state.down,right:state.right,left:state.left,DRest:state
 BananaTree:state.BananaTree}}
 
 function mapDispatchToProps(dispatch){
-return{GoLeft2:()=>dispatch({type:'Go_Left2'}),GetBanana:()=>dispatch({type:'Get_Banana'}),
+return{GoUp3:()=>dispatch({type:'Go_Up3'}),GetBanana:()=>dispatch({type:'Get_Banana'}),
 kleft:()=>dispatch({type:'kleft'}),kright:()=>dispatch({type:'kright'}),kup:()=>dispatch({type:'kup'}),kdown:()=>dispatch({type:'kdown'})}}
 
 export default connect(mapStateToProps,mapDispatchToProps)(Up4)

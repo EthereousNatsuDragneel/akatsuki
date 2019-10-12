@@ -48,8 +48,9 @@ this.props.kright()}
 else{this.setState(previousState=>({kekadu:this.props.RWalk2,hAlternate:1,c:-1}))
 this.props.kright()}
 this.walking=setTimeout(this.walkRight,300)}
-else if(this.props.x>304){this.props.GoLeft3()}
-else{this.setState(previousState=>({kekadu:this.props.RRest}))}}
+else{this.setState(previousState=>({kekadu:this.props.RRest}))
+this.props.GoLeft3()
+this.props.navigation.navigate('Left3')}}
 stop=()=>clearTimeout(this.walking)
 render(){return(<View style={{flex:1}}><View style={{height:'70%',width:'100%',backgroundColor:"green",flexDirection:"row"}}>
 <Image source={this.state.kekadu} style={{position:'absolute',x:this.props.x,y:this.props.y,height:32,width:32}}/>
@@ -78,12 +79,12 @@ render(){return(<View style={{flex:1}}><View style={{height:'70%',width:'100%',b
 <View style={{flex:1,flexDirection:"row"}}>
 <View style={{flex:1,alignSelf:"stretch",backgroundColor:"black"}}/>
 <View style={{flex:1,alignSelf:"stretch"}}>
-<TouchableOpacity onPressIn={this.walkUp} onPressOut={this.stop}><Image source={this.props.kup} style={{height:'100%',width:'100%'}}/></TouchableOpacity>
+<TouchableOpacity onPressIn={this.walkUp} onPressOut={this.stop}><Image source={this.props.up} style={{height:'100%',width:'100%'}}/></TouchableOpacity>
 </View><View style={{flex:1,alignSelf:"stretch",backgroundColor:"black"}}/></View>
 <View style={{flex:1,flexDirection:"row"}}><View style={{flex:1,alignSelf:"stretch"}}>
-<TouchableOpacity onPressIn={this.walkLeft} onPressOut={this.stop}><Image style={{height:'100%',width:'100%'}} source={this.props.kleft}/></TouchableOpacity></View>
-<View style={{flex:1,alignSelf:"stretch"}}><TouchableOpacity onPressIn={this.walkDown} onPressOut={this.stop}><Image style={{height:'100%',width:'100%'}} source={this.props.kdown}/></TouchableOpacity></View>
-<View style={{flex:1,alignSelf:"stretch"}}><TouchableOpacity onPressIn={this.walkRight} onPressOut={this.stop}><Image style={{height:'100%',width:'100%'}} source={this.props.kright}/></TouchableOpacity></View>
+<TouchableOpacity onPressIn={this.walkLeft} onPressOut={this.stop}><Image style={{height:'100%',width:'100%'}} source={this.props.left}/></TouchableOpacity></View>
+<View style={{flex:1,alignSelf:"stretch"}}><TouchableOpacity onPressIn={this.walkDown} onPressOut={this.stop}><Image style={{height:'100%',width:'100%'}} source={this.props.down}/></TouchableOpacity></View>
+<View style={{flex:1,alignSelf:"stretch"}}><TouchableOpacity onPressIn={this.walkRight} onPressOut={this.stop}><Image style={{height:'100%',width:'100%'}} source={this.props.right}/></TouchableOpacity></View>
 </View></View>)}}
 
 function mapStateToProps(state){

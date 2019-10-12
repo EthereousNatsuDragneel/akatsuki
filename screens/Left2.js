@@ -1,11 +1,12 @@
 import React, {Component} from 'react'
 import {Image,View,Text,TouchableOpacity} from 'react-native'
 import {connect} from 'react-redux'
+
 class Left2 extends Component{
 constructor(props){
 super(props)
 this.state={hStep:16,vStep:16,vAlternate:0,hAlternate:0,c:1,kekadu:this.props.FRest}}
-walkDown=()=>{if(this.props.y<230 || this.props.x>80 && this.props.x<240){
+walkDown=()=>{if(this.props.x>80 && this.props.x<240){
 //walkDown code
 if(this.state.vAlternate==0){
 this.setState(previousState=>({c:1,vAlternate:1,kekadu:this.props.DWalk1}))
@@ -14,10 +15,11 @@ else if(this.state.vAlternate==1){this.setState(previousState=>({kekadu:this.pro
 this.props.kdown()}
 else{this.setState(previousState=>({kekadu:this.props.DWalk2,vAlternate:1,c:-1}))
 this.props.kdown()}
-this.walking=setTimeout(this.walkDown,300)}
-else if(this.props.y>304){this.props.GoMonkey()}
+this.walking=setTimeout(this.walkDown,300)
+if(this.props.y>304){this.props.GoMonkey()
+this.props.navigation.navigate('MonkeyScreen')}}
 else{this.setState(previousState=>({kekadu:this.props.DRest}))}}
-walkUp=()=>{if(this.props.y>144 || this.props.x>80 && this.props.x<240){
+walkUp=()=>{if(this.props.x>80 && this.props.x<240){
 //walkUp code
 if(this.state.vAlternate==0){
 this.setState(previousState=>({c:1,vAlternate:1,kekadu:this.props.FWalk1}))
@@ -26,10 +28,11 @@ else if(this.state.vAlternate==1){this.setState(previousState=>({kekadu:this.pro
 this.props.kup()}
 else{this.setState(previousState=>({kekadu:this.props.FWalk2,vAlternate:1,c:-1}))
 this.props.kup()}
-this.walking=setTimeout(this.walkUp,300)}
-else if(this.props.y<16){this.props.GoDonkey()}
+this.walking=setTimeout(this.walkUp,300)
+if(this.props.y<16){this.props.GoDonkey()
+this.props.navigation.navigate('DonkeyScreen')}}
 else{this.setState(previousState=>({kekadu:this.props.FRest}))}}
-walkLeft=()=>{if(this.props.x>16){
+walkLeft=()=>{if(this.props.y>144 && this.props.y<240){
 //walkLeft Code
 if(this.state.hAlternate==0){
 this.setState(previousState=>({c:1,hAlternate:1,kekadu:this.props.LWalk1}))
@@ -38,10 +41,11 @@ else if(this.state.vAlternate==1){this.setState(previousState=>({kekadu:this.pro
 this.props.kleft()}
 else{this.setState(previousState=>({kekadu:this.props.LWalk2,hAlternate:1,c:-1}))
 this.props.kleft()}
-this.walking=setTimeout(this.walkLeft,300)}
-else if(this.props.x<16){this.props.GoLeft3()}
+this.walking=setTimeout(this.walkLeft,300)
+if(this.props.x<16){this.props.GoLeft3()
+this.props.navigation.navigate('Left3')}}
 else{this.setState(previousState=>({kekadu:this.props.LRest}))}}
-walkRight=()=>{if(this.props.x<304){
+walkRight=()=>{if(this.props.y>144 && this.props.y<240){
 //walkRight code
 if(this.state.hAlternate==0){
 this.setState(previousState=>({c:1,hAlternate:1,kekadu:this.props.RWalk1}))
@@ -50,8 +54,9 @@ else if(this.state.vAlternate==1){this.setState(previousState=>({kekadu:this.pro
 this.props.kright()}
 else{this.setState(previousState=>({kekadu:this.props.RWalk2,hAlternate:1,c:-1}))
 this.props.kright()}
-this.walking=setTimeout(this.walkRight,300)}
-else if(this.props.x>304){this.props.GoLeft1()}
+this.walking=setTimeout(this.walkRight,300)
+if(this.props.x>304){this.props.GoLeft1()
+this.props.navigation.navigate('Left1')}}
 else{this.setState(previousState=>({kekadu:this.props.RRest}))}}
 stop=()=>clearTimeout(this.walking)
 render(){return(<View style={{flex:1}}><View style={{height:'70%',width:'100%',backgroundColor:"green",flexDirection:"row"}}>
@@ -68,12 +73,12 @@ render(){return(<View style={{flex:1}}><View style={{height:'70%',width:'100%',b
 <View style={{flex:1,flexDirection:"row"}}>
 <View style={{flex:1,alignSelf:"stretch",backgroundColor:"black"}}/>
 <View style={{flex:1,alignSelf:"stretch"}}>
-<TouchableOpacity onPressIn={this.walkUp} onPressOut={this.stop}><Image source={this.props.kup} style={{height:'100%',width:'100%'}}/></TouchableOpacity>
+<TouchableOpacity onPressIn={this.walkUp} onPressOut={this.stop}><Image source={this.props.up} style={{height:'100%',width:'100%'}}/></TouchableOpacity>
 </View><View style={{flex:1,alignSelf:"stretch",backgroundColor:"black"}}/></View>
 <View style={{flex:1,flexDirection:"row"}}><View style={{flex:1,alignSelf:"stretch"}}>
-<TouchableOpacity onPressIn={this.walkLeft} onPressOut={this.stop}><Image style={{height:'100%',width:'100%'}} source={this.props.kleft}/></TouchableOpacity></View>
-<View style={{flex:1,alignSelf:"stretch"}}><TouchableOpacity onPressIn={this.walkDown} onPressOut={this.stop}><Image style={{height:'100%',width:'100%'}} source={this.props.kdown}/></TouchableOpacity></View>
-<View style={{flex:1,alignSelf:"stretch"}}><TouchableOpacity onPressIn={this.walkRight} onPressOut={this.stop}><Image style={{height:'100%',width:'100%'}} source={this.props.kright}/></TouchableOpacity></View>
+<TouchableOpacity onPressIn={this.walkLeft} onPressOut={this.stop}><Image style={{height:'100%',width:'100%'}} source={this.props.left}/></TouchableOpacity></View>
+<View style={{flex:1,alignSelf:"stretch"}}><TouchableOpacity onPressIn={this.walkDown} onPressOut={this.stop}><Image style={{height:'100%',width:'100%'}} source={this.props.down}/></TouchableOpacity></View>
+<View style={{flex:1,alignSelf:"stretch"}}><TouchableOpacity onPressIn={this.walkRight} onPressOut={this.stop}><Image style={{height:'100%',width:'100%'}} source={this.props.right}/></TouchableOpacity></View>
 </View></View>)}}
 
 function mapStateToProps(state){

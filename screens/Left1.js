@@ -38,7 +38,9 @@ this.props.kleft()}
 else{this.setState(previousState=>({kekadu:this.props.LWalk2,hAlternate:1,c:-1}))
 this.props.kleft()}
 this.walking=setTimeout(this.walkLeft,300)}
-else{this.setState(previousState=>({kekadu:this.props.LRest}))}}
+else{this.setState(previousState=>({kekadu:this.props.LRest}))
+this.props.GoLeft2()
+this.props.navigation.navigate('Left2')}}
 walkRight=()=>{if(this.props.x<304){
 //walkRight code
 if(this.state.hAlternate==0){
@@ -77,19 +79,19 @@ render(){return(<View style={{flex:1}}><View style={{height:'70%',width:'100%',b
 <View style={{flex:1,flexDirection:"row"}}>
 <View style={{flex:1,alignSelf:"stretch",backgroundColor:"black"}}/>
 <View style={{flex:1,alignSelf:"stretch"}}>
-<TouchableOpacity onPressIn={this.walkUp} onPressOut={this.stop}><Image source={this.props.kup} style={{height:'100%',width:'100%'}}/></TouchableOpacity>
+<TouchableOpacity onPressIn={this.walkUp} onPressOut={this.stop}><Image source={this.props.up} style={{height:'100%',width:'100%'}}/></TouchableOpacity>
 </View><View style={{flex:1,alignSelf:"stretch",backgroundColor:"black"}}/></View>
 <View style={{flex:1,flexDirection:"row"}}><View style={{flex:1,alignSelf:"stretch"}}>
-<TouchableOpacity onPressIn={this.walkLeft} onPressOut={this.stop}><Image style={{height:'100%',width:'100%'}} source={this.props.kleft}/></TouchableOpacity></View>
-<View style={{flex:1,alignSelf:"stretch"}}><TouchableOpacity onPressIn={this.walkDown} onPressOut={this.stop}><Image style={{height:'100%',width:'100%'}} source={this.props.kdown}/></TouchableOpacity></View>
-<View style={{flex:1,alignSelf:"stretch"}}><TouchableOpacity onPressIn={this.walkRight} onPressOut={this.stop}><Image style={{height:'100%',width:'100%'}} source={this.props.kright}/></TouchableOpacity></View>
+<TouchableOpacity onPressIn={this.walkLeft} onPressOut={this.stop}><Image style={{height:'100%',width:'100%'}} source={this.props.left}/></TouchableOpacity></View>
+<View style={{flex:1,alignSelf:"stretch"}}><TouchableOpacity onPressIn={this.walkDown} onPressOut={this.stop}><Image style={{height:'100%',width:'100%'}} source={this.props.down}/></TouchableOpacity></View>
+<View style={{flex:1,alignSelf:"stretch"}}><TouchableOpacity onPressIn={this.walkRight} onPressOut={this.stop}><Image style={{height:'100%',width:'100%'}} source={this.props.right}/></TouchableOpacity></View>
 </View></View>)}}
 
 function mapStateToProps(state){
 return{up:state.up,down:state.down,right:state.right,left:state.left,DRest:state.DRest,DWalk1:state.DWalk1,DWalk2:state.DWalk2,FRest:state.FRest,FWalk1:state.FWalk1,FWalk2:state.FWalk2,LRest:state.LRest,LWalk1:state.LWalk1,LWalk2:state.LWalk2,RRest:state.RRest,RWalk1:state.RWalk1,RWalk2:state.RWalk2,Tree:state.Tree,x:state.x,y:state.y}}
 
 function mapDispatchToProps(dispatch){
-return{GoFriendScreen:()=>dispatch({type:'Go_FriendScreen'}),
+return{GoFriendScreen:()=>dispatch({type:'Go_FriendScreen'}),GoLeft2:()=>dispatch({type:'Go_Left2'}),
 kleft:()=>dispatch({type:'kleft'}),kright:()=>dispatch({type:'kright'}),kup:()=>dispatch({type:'kup'}),kdown:()=>dispatch({type:'kdown'})}}
 
 export default connect(mapStateToProps,mapDispatchToProps)(Left1)

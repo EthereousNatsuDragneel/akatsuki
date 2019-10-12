@@ -5,7 +5,7 @@ class MonkeyScreen extends Component{
 constructor(props){
 super(props)
 this.state={hStep:16,vStep:16,vAlternate:0,hAlternate:0,c:1,kekadu:this.props.FRest,Monkey:this.props.FMonkey}}
-walkDown=()=>{if(this.props.y<208 || this.props.y<240 && this.props.x<128 || this.props.y<240 && this.props.x>192){
+walkDown=()=>{if(this.props.y<208 || (this.props.y<240 && this.props.x<128) || (this.props.y<240 && this.props.x>192)){
 //walkDown code
 if(this.state.vAlternate==0){
 this.setState(previousState=>({c:1,vAlternate:1,kekadu:this.props.DWalk1}))
@@ -27,10 +27,10 @@ this.props.kup()}
 else{this.setState(previousState=>({kekadu:this.props.FWalk2,vAlternate:1,c:-1}))
 this.props.kup()}
 this.walking=setTimeout(this.walkUp,300)}
-//enter Monkeygame down
 else{this.setState(previousState=>({kekadu:this.props.FRest}))
-this.props.GoLeft2()}}
-walkLeft=()=>{if(this.props.x>80 && this.props.y<208 || this.props.y<240 && this.props.x>192 || this.props.y<240 && this.props.x<128 && this.props.x>80){
+this.props.GoLeft2()
+this.props.navigation.navigate('Left2')}}
+walkLeft=()=>{if((this.props.x>80 && this.props.y<208) || (this.props.y<240 && this.props.x>192) || (this.props.y<240 && this.props.x<128 && this.props.x>80)){
 //walkLeft Code
 if(this.state.hAlternate==0){
 this.setState(previousState=>({c:1,hAlternate:1,kekadu:this.props.LWalk1}))
@@ -42,7 +42,7 @@ this.props.kleft()}
 this.walking=setTimeout(this.walkLeft,300)}
 else if(this.props.y>192 && this.props.x>128 && this.props.x<192){this.setState({Monkey:this.props.RMonkey})}
 else{this.setState(previousState=>({kekadu:this.props.LRest}))}}
-walkRight=()=>{if(this.props.x<240 && this.props.y<208 || this.props.y<240 && this.props.x>192 && this.props.x<240 || this.props.y<240 && this.props.x<128){
+walkRight=()=>{if((this.props.x<240 && this.props.y<208) || (this.props.y<240 && this.props.x>192 && this.props.x<240) || (this.props.y<240 && this.props.x<128)){
 //walkRight code
 if(this.state.hAlternate==0){
 this.setState(previousState=>({c:1,hAlternate:1,kekadu:this.props.RWalk1}))
@@ -79,12 +79,12 @@ render(){return(<View style={{flex:1}}><View style={{height:'70%',width:'100%',b
 <View style={{flex:1,flexDirection:"row"}}>
 <View style={{flex:1,alignSelf:"stretch",backgroundColor:"black"}}/>
 <View style={{flex:1,alignSelf:"stretch"}}>
-<TouchableOpacity onPressIn={this.walkUp} onPressOut={this.stop}><Image source={this.props.kup} style={{height:'100%',width:'100%'}}/></TouchableOpacity>
+<TouchableOpacity onPressIn={this.walkUp} onPressOut={this.stop}><Image source={this.props.up} style={{height:'100%',width:'100%'}}/></TouchableOpacity>
 </View><View style={{flex:1,alignSelf:"stretch",backgroundColor:"black"}}/></View>
 <View style={{flex:1,flexDirection:"row"}}><View style={{flex:1,alignSelf:"stretch"}}>
-<TouchableOpacity onPressIn={this.walkLeft} onPressOut={this.stop}><Image style={{height:'100%',width:'100%'}} source={this.props.kleft}/></TouchableOpacity></View>
-<View style={{flex:1,alignSelf:"stretch"}}><TouchableOpacity onPressIn={this.walkDown} onPressOut={this.stop}><Image style={{height:'100%',width:'100%'}} source={this.props.kdown}/></TouchableOpacity></View>
-<View style={{flex:1,alignSelf:"stretch"}}><TouchableOpacity onPressIn={this.walkRight} onPressOut={this.stop}><Image style={{height:'100%',width:'100%'}} source={this.props.kright}/></TouchableOpacity></View>
+<TouchableOpacity onPressIn={this.walkLeft} onPressOut={this.stop}><Image style={{height:'100%',width:'100%'}} source={this.props.left}/></TouchableOpacity></View>
+<View style={{flex:1,alignSelf:"stretch"}}><TouchableOpacity onPressIn={this.walkDown} onPressOut={this.stop}><Image style={{height:'100%',width:'100%'}} source={this.props.down}/></TouchableOpacity></View>
+<View style={{flex:1,alignSelf:"stretch"}}><TouchableOpacity onPressIn={this.walkRight} onPressOut={this.stop}><Image style={{height:'100%',width:'100%'}} source={this.props.right}/></TouchableOpacity></View>
 </View></View>)}}
 
 function mapStateToProps(state){

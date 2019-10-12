@@ -1,10 +1,11 @@
 import React, {Component} from 'react'
 import {View,Text,Image,TouchableOpacity} from 'react-native'
 import {connect} from 'react-redux'
+
 class Up3Right2 extends Component{
 constructor(props){
 super(props)
-this.state={hStep:16,vStep:16,vAlternate:0,hAlternate:0,c:1,kekadu:this.props.FRest}}
+this.state={hStep:16,vStep:16,vAlternate:0,hAlternate:0,c:1,kekadu:this.props.FRest,fox:this.props.LFox}}
 walkDown=()=>{if(this.props.y<230){
 //walkDown code
 if(this.state.vAlternate==0){
@@ -16,7 +17,7 @@ else{this.setState(previousState=>({kekadu:this.props.DWalk2,vAlternate:1,c:-1})
 this.props.kdown()}
 this.walking=setTimeout(this.walkDown,300)}
 else{this.setState(previousState=>({kekadu:this.props.DRest}))}}
-walkUp=()=>{if(this.props.y>144){
+walkUp=()=>{if((this.props.y>144 && this.props.x<208) || this.props.y>176){
 //walkUp code
 if(this.state.vAlternate==0){
 this.setState(previousState=>({c:1,vAlternate:1,kekadu:this.props.FWalk1}))
@@ -26,6 +27,8 @@ this.props.kup()}
 else{this.setState(previousState=>({kekadu:this.props.FWalk2,vAlternate:1,c:-1}))
 this.props.kup()}
 this.walking=setTimeout(this.walkUp,300)}
+else if(this.props.y<176 && this.props.x>208){this.setState({fox:this.props.DFox})
+if(this.props.animal==2 && this.props.gotItem==0){this.props.navigation.navigate("FoxGame")}}
 else{this.setState(previousState=>({kekadu:this.props.FRest}))}}
 walkLeft=()=>{if(this.props.x>0){
 //walkLeft Code
@@ -37,9 +40,10 @@ this.props.kleft()}
 else{this.setState(previousState=>({kekadu:this.props.LWalk2,hAlternate:1,c:-1}))
 this.props.kleft()}
 this.walking=setTimeout(this.walkLeft,300)}
-else if(this.props.x<16){this.props.GoUp3Right1()}
-else{this.setState(previousState=>({kekadu:this.props.LRest}))}}
-walkRight=()=>{if(this.props.x<240){
+else{this.setState(previousState=>({kekadu:this.props.LRest}))
+this.props.GoUp3Right1()
+this.props.navigation.navigate('Up3Right1')}}
+walkRight=()=>{if(this.props.x<208 || (this.props.y>196 && this.props.x<240)){
 //walkRight code
 if(this.state.hAlternate==0){
 this.setState(previousState=>({c:1,hAlternate:1,kekadu:this.props.RWalk1}))
@@ -49,10 +53,13 @@ this.props.kright()}
 else{this.setState(previousState=>({kekadu:this.props.RWalk2,hAlternate:1,c:-1}))
 this.props.kright()}
 this.walking=setTimeout(this.walkRight,300)}
+else if(this.props.y<160 && this.props.x>208){this.setState({fox:this.props.LFox})
+if(this.props.animal==2 && this.props.gotItem==0){this.props.navigation.navigate('FoxGame')}}
 else{this.setState(previousState=>({kekadu:this.props.RRest}))}}
 stop=()=>clearTimeout(this.walking)
 render(){return(<View style={{flex:1}}><View style={{height:'70%',width:'100%',backgroundColor:"green",flexDirection:"row"}}>
 <Image source={this.state.kekadu} style={{position:'absolute',x:this.props.x,y:this.props.y,height:32,width:32}}/>
+<Image source={this.state.fox} style={{position:'absolute',left:224,top:144,height:32,width:32}}/>
 <Image source={this.props.Tree} style={{top:32,left:32,height:64,width:64,position:'absolute'}}/>
 <Image source={this.props.Tree} style={{top:32,left:288,height:64,width:64,position:'absolute'}}/>
 <Image source={this.props.Tree} style={{top:32,left:224,height:64,width:64,position:'absolute'}}/>
@@ -78,16 +85,16 @@ render(){return(<View style={{flex:1}}><View style={{height:'70%',width:'100%',b
 <View style={{flex:1,flexDirection:"row"}}>
 <View style={{flex:1,alignSelf:"stretch",backgroundColor:"black"}}/>
 <View style={{flex:1,alignSelf:"stretch"}}>
-<TouchableOpacity onPressIn={this.walkUp} onPressOut={this.stop}><Image source={this.props.kup} style={{height:'100%',width:'100%'}}/></TouchableOpacity>
+<TouchableOpacity onPressIn={this.walkUp} onPressOut={this.stop}><Image source={this.props.up} style={{height:'100%',width:'100%'}}/></TouchableOpacity>
 </View><View style={{flex:1,alignSelf:"stretch",backgroundColor:"black"}}/></View>
 <View style={{flex:1,flexDirection:"row"}}><View style={{flex:1,alignSelf:"stretch"}}>
-<TouchableOpacity onPressIn={this.walkLeft} onPressOut={this.stop}><Image style={{height:'100%',width:'100%'}} source={this.props.kleft}/></TouchableOpacity></View>
-<View style={{flex:1,alignSelf:"stretch"}}><TouchableOpacity onPressIn={this.walkDown} onPressOut={this.stop}><Image style={{height:'100%',width:'100%'}} source={this.props.kdown}/></TouchableOpacity></View>
-<View style={{flex:1,alignSelf:"stretch"}}><TouchableOpacity onPressIn={this.walkRight} onPressOut={this.stop}><Image style={{height:'100%',width:'100%'}} source={this.props.kright}/></TouchableOpacity></View>
+<TouchableOpacity onPressIn={this.walkLeft} onPressOut={this.stop}><Image style={{height:'100%',width:'100%'}} source={this.props.left}/></TouchableOpacity></View>
+<View style={{flex:1,alignSelf:"stretch"}}><TouchableOpacity onPressIn={this.walkDown} onPressOut={this.stop}><Image style={{height:'100%',width:'100%'}} source={this.props.down}/></TouchableOpacity></View>
+<View style={{flex:1,alignSelf:"stretch"}}><TouchableOpacity onPressIn={this.walkRight} onPressOut={this.stop}><Image style={{height:'100%',width:'100%'}} source={this.props.right}/></TouchableOpacity></View>
 </View></View>)}}
 
 function mapStateToProps(state){
-return{up:state.up,down:state.down,right:state.right,left:state.left,DRest:state.DRest,DWalk1:state.DWalk1,DWalk2:state.DWalk2,FRest:state.FRest,FWalk1:state.FWalk1,FWalk2:state.FWalk2,LRest:state.LRest,LWalk1:state.LWalk1,LWalk2:state.LWalk2,RRest:state.RRest,RWalk1:state.RWalk1,RWalk2:state.RWalk2,Tree:state.Tree,x:state.x,y:state.y}}
+return{up:state.up,down:state.down,right:state.right,left:state.left,DRest:state.DRest,DWalk1:state.DWalk1,DWalk2:state.DWalk2,FRest:state.FRest,FWalk1:state.FWalk1,FWalk2:state.FWalk2,LRest:state.LRest,LWalk1:state.LWalk1,LWalk2:state.LWalk2,RRest:state.RRest,RWalk1:state.RWalk1,RWalk2:state.RWalk2,Tree:state.Tree,x:state.x,y:state.y,LFox:state.LFox,DFox:state.DFox,gotItem:state.gotItem}}
 
 function mapDispatchToProps(dispatch){
 return{GoUp3Right1:()=>dispatch({type:'Go_Up3Right1'}),

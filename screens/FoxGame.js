@@ -1,37 +1,50 @@
 import React, {Component} from 'react'
-import {Button,Text,Image,TouchableOpacity,ImageBackground} from 'react-native'
-export default class FoxGame extends Component{
+import {View,Text,Image,TouchableOpacity,ImageBackground} from 'react-native'
+import {connect} from 'react-redux'
+
+class FoxGame extends Component{
 constructor(props){
 super(props)
-this.state={fox:null,player:null,msg:null,rock:"./images/Rock.png",paper:"./images/Paper.png",scissor:"./images/Scissor.png",bg:"./images/JungleBackgroundForGames.jpg",foxChoice:"./images/questionMark.png",userChoice:"./images/questionMark.png",win:0}}
+this.state={wins:0,fox:this.props.Question,user:this.props.Question,random:null,jungle:this.props.Jungle,rock:this.props.Rock,Paper:this.props.Paper,Scissor:this.props.Scissor}}
 generateFox=()=>{var x=Math.floor(Math.random()*100)+1
-this.setState({fox:x%3})}
-componentDidMount(){this.generateFox()}
-battle=()=>{if(this.state.fox==0){
-if(this.state.user==0){this.setState({msg:"DRAW"})}
-if(this.state.user==1){this.setState({msg:"WIN",win:this.state.win+1})}
-if(this.state.user==2){this.setState({msg:"LOSE"})}
-}if(this.state.fox==1){
-if(this.state.user==0){this.setState({msg:"LOSE"})}
-if(this.state.user==1){this.setState({msg:"DRAW"})}
-if(this.state.user==2){this.setState({msg:"WIN",win:this.state.win+1})}
-}if(this.state.fox==2){
-if(this.state.user==0){this.setState({msg:"WIN",win:this.state.win+1})}
-if(this.state.user==1){this.setState({msg:"LOSE"})}
-if(this.state.user==2){this.setState({msg:"DRAW"})}}}
-render(){return(<ImageBackground source={{uri:this.state.bg}} style={{width:100%,height:70%}}>
+this.setState({random:x%3})}
+rock=()=>{this.generateFox()
+if(this.state.random==2){this.setState(previousState=>({wins:previousState.wins+1,fox:previousState.Scissor}))}
+else if(this.state.random==1){this.setState(previousState=>({fox:previousState.Paper}))}
+else{this.setState(previousState=>({fox:previousState.Rock}))}
+this.setState(previousState=>({user:previousState.Rock}))
+if(this.state.wins==3){if(this.props.item==1){this.props.GetCarrot()}
+else{this.props.GetMedicine()}
+setTimeout(()=>this.props.navigation.navigate('Up3Right2'),1500)}}
+paper=()=>{this.generateFox()
+if(this.state.random==0){this.setState(previousState=>({wins:previousState.wins+1,fox:previousState.Rock}))}
+else if(this.state.random==1){this.setState(previousState=>({fox:previousState.Paper}))}
+else{rethis.setState(previousState=>({fox:previousState.Rock}))}
+this.setState(previousState=>({user:previousState.Paper}))
+if(this.state.wins==3){if(this.props.item==1){this.props.GetCarrot()}
+else{this.props.GetMedicine()}
+setTimeout(()=>this.props.navigation.navigate('Up3Right2'),1500)}}
+scissor=()=>{this.generateFox()
+if(this.state.random==1){this.setState(previousState=>({wins:previousState.wins+1,fox:previousState.Paper}))}
+else if(this.state.random==2){this.setState(previousState=>({fox:previousState.Scissor}))}
+else{this.setState(previousState=>({fox:previousState.Rock}))}
+this.setState(previousState=>({user:previousState.Scissor}))
+if(this.state.wins==3){if(this.props.item==1){this.props.GetCarrot()}
+else{this.props.GetMedicine()}
+setTimeout(()=>this.props.navigation.navigate('Up3Right2'),1500)}}
+render(){return(<ImageBackground source={this.state.jungle} style={{flex:1}}><View style={{height:'70%',width:'100%'}}>
 <Text style={{fontSize:25,textAlign:"center",top:25}}>ROCK PAPER SCISSOR</Text>
-<Text style={{fontSize:25,textAlign:"left",top:40,left:10}}>PLAYER</Text><Text style={{fontSize:25,textAlign:"right",top:40}}>FOX</Text>
-<Text style={{fontSize:25,top:60,textAlign:"center"}}>WINS: {this.state.win}</Text>
-<Image source={{uri:this.state.userChoice}} style={{left:25%,top:50%,width:40%,height:40%}}/>
-<Image source={{uri:this.state.foxChoice}} style={{left:75%,width:40%,top:50%,height:40%}}/>
-<TouchableOpacity style={{top:85%,left:80%}} onPress={()=>{this.setState({user:0,userChoice:rock,foxChoice:fox})
-this.generateFox()
-this.battle()}}><Image source={{uri:this.state.rock}} style={{width:30%,height:30%}}/></TouchableOpacity>
-<TouchableOpacity onPress={()=>{this.setState({user:1,userChoice:paper,foxChoice:fox})
-this.generateFox()
-this.battle()}} style={{top:85%,left:50%}}><Image source={{uri:this.state.paper}} style={{width:30%,height:30%}}/></TouchableOpacity>
-<TouchableOpacity onPress={()=>{this.setState({user:2,userChoice:scissor,foxChoice:fox})
-this.generateFox()
-this.battle()}} style={{top:85%,left:20%}}><Image source={{uri:this.state.scissor}} style={{width:30%,height:30%}}/></TouchableOpacity>
-</View>)}}
+<Text style={{fontSize:25,top:60,textAlign:"center"}}>{this.state.wins}</Text>
+<Image source={this.state.user} style={{height:128,width:128,left:64,top:160,position:'absolute'}}/>
+<Image source={this.state.fox} style={{left:256,top:160,height:128,width:128,position:'absolute'}}/>
+
+</View><View style={{flex:1,flexDirection:"row"}}>
+<View style={{flex:1,alignSelf:"stretch"}}><TouchableOpacity onPress={()=>this.rock()}><Image style={{height:'100%',width:'100%'}} source={this.state.Rock}/></TouchableOpacity></View>
+<View style={{flex:1,alignSelf:"stretch"}}><TouchableOpacity onPress={()=>this.paper()}><Image style={{height:'100%',width:'100%'}} source={this.state.Paper}/></TouchableOpacity></View>
+<View style={{flex:1,alignSelf:"stretch"}}><TouchableOpacity onPress={()=>this.scissor()}><Image style={{height:'100%',width:'100%'}} source={this.state.Scissor}/></TouchableOpacity></View>
+</View></ImageBackground>)}}
+
+function mapStateToProps(state){return{Jungle:state.Jungle,Rock:state.Rock,Paper:state.Paper,Scissor:state.Scissor,Question:state.Question,item:state.item}}
+function mapDispatchToProps(dispatch){return{GetCarrot:()=>dispatch({type:"Get_Carrot"}),GetMedicine:()=>dispatch({type:"Get_Medicine"})}}
+
+export default connect(mapStateToProps,mapDispatchToProps)(FoxGame)
