@@ -59,7 +59,7 @@ this.props.navigation.navigate('Up1Right1')}}
 else{this.setState(previousState=>({kekadu:this.props.RRest}))}}
 stop=()=>clearTimeout(this.walking)
 render(){return(<View style={{flex:1}}><View style={{height:'70%',width:'100%',backgroundColor:"green",flexDirection:"row"}}>
-<Image source={this.state.kekadu} style={{position:'absolute',x:this.props.x,y:this.props.y,height:32,width:32}}/>
+<Image source={this.state.kekadu} style={{position:'absolute',left:this.props.x,top:this.props.y,height:32,width:32}}/>
 
 <Image source={this.props.Tree} style={{position:'absolute',top:32,left:32,height:64,width:64}}/>
 <Image source={this.props.Tree} style={{position:'absolute',top:96,left:32,height:64,width:64}}/>

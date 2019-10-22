@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 class Up4 extends Component{
 constructor(props){
 super(props)
+this.walkUp=this.walkUp.bind(this)
 this.state={hStep:16,vStep:16,vAlternate:0,hAlternate:0,c:1,kekadu:this.props.FRest}}
 walkDown=()=>{if(this.props.y<304){
 //walkDown code
@@ -29,7 +30,7 @@ else{this.setState(previousState=>({kekadu:this.props.FWalk2,vAlternate:1,c:-1})
 this.props.kup()}
 this.walking=setTimeout(this.walkUp,300)}
 else{this.setState(previousState=>({kekadu:this.props.FRest}))
-if(this.props.item==0){
+if(this.props.item==0 && this.props.gotItem==0){
 this.props.GetBanana()}}}
 walkLeft=()=>{if(this.props.x>80){
 //walkLeft Code
@@ -55,7 +56,7 @@ this.walking=setTimeout(this.walkRight,300)}
 else{this.setState(previousState=>({kekadu:this.props.RRest}))}}
 stop=()=>clearTimeout(this.walking)
 render(){return(<View style={{flex:1}}><View style={{height:'70%',width:'100%',backgroundColor:"green",flexDirection:"row"}}>
-<Image source={this.state.kekadu} style={{position:'absolute',x:this.props.x,y:this.props.y,height:32,width:32}}/>
+<Image source={this.state.kekadu} style={{position:'absolute',left:this.props.x,top:this.props.y,height:32,width:32}}/>
 
 <Image source={this.props.BananaTree} style={{top:32,left:32,height:64,width:64,position:'absolute'}}/>
 <Image source={this.props.BananaTree} style={{top:32,left:288,height:64,width:64,position:'absolute'}}/>
@@ -87,7 +88,7 @@ render(){return(<View style={{flex:1}}><View style={{height:'70%',width:'100%',b
 
 function mapStateToProps(state){
 return{up:state.up,down:state.down,right:state.right,left:state.left,DRest:state.DRest,DWalk1:state.DWalk1,DWalk2:state.DWalk2,FRest:state.FRest,FWalk1:state.FWalk1,FWalk2:state.FWalk2,LRest:state.LRest,LWalk1:state.LWalk1,LWalk2:state.LWalk2,RRest:state.RRest,RWalk1:state.RWalk1,RWalk2:state.RWalk2,Tree:state.Tree,x:state.x,y:state.y,
-BananaTree:state.BananaTree}}
+BananaTree:state.BananaTree,gotItem:state.gotItem,item:state.item}}
 
 function mapDispatchToProps(dispatch){
 return{GoUp3:()=>dispatch({type:'Go_Up3'}),GetBanana:()=>dispatch({type:'Get_Banana'}),

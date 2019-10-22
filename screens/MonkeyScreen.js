@@ -5,7 +5,7 @@ class MonkeyScreen extends Component{
 constructor(props){
 super(props)
 this.state={hStep:16,vStep:16,vAlternate:0,hAlternate:0,c:1,kekadu:this.props.FRest,Monkey:this.props.FMonkey}}
-walkDown=()=>{if(this.props.y<208 || (this.props.y<240 && this.props.x<128) || (this.props.y<240 && this.props.x>192)){
+walkDown=()=>{if(this.props.y<208 || (this.props.y<240 && (this.props.x<128 || this.props.x>192))){
 //walkDown code
 if(this.state.vAlternate==0){
 this.setState(previousState=>({c:1,vAlternate:1,kekadu:this.props.DWalk1}))
@@ -30,7 +30,7 @@ this.walking=setTimeout(this.walkUp,300)}
 else{this.setState(previousState=>({kekadu:this.props.FRest}))
 this.props.GoLeft2()
 this.props.navigation.navigate('Left2')}}
-walkLeft=()=>{if((this.props.x>80 && this.props.y<208) || (this.props.y<240 && this.props.x>192) || (this.props.y<240 && this.props.x<128 && this.props.x>80)){
+walkLeft=()=>{if(this.props.y<208 || (this.props.y<240 && (this.props.x>192 || (this.props.x<128 && this.props.x>80)))){
 //walkLeft Code
 if(this.state.hAlternate==0){
 this.setState(previousState=>({c:1,hAlternate:1,kekadu:this.props.LWalk1}))
@@ -42,7 +42,7 @@ this.props.kleft()}
 this.walking=setTimeout(this.walkLeft,300)}
 else if(this.props.y>192 && this.props.x>128 && this.props.x<192){this.setState({Monkey:this.props.RMonkey})}
 else{this.setState(previousState=>({kekadu:this.props.LRest}))}}
-walkRight=()=>{if((this.props.x<240 && this.props.y<208) || (this.props.y<240 && this.props.x>192 && this.props.x<240) || (this.props.y<240 && this.props.x<128)){
+walkRight=()=>{if((this.props.x<240 && this.props.y<208) || (this.props.y<240 && ((this.props.x>192 && this.props.x<240) || this.props.x<128))){
 //walkRight code
 if(this.state.hAlternate==0){
 this.setState(previousState=>({c:1,hAlternate:1,kekadu:this.props.RWalk1}))
@@ -56,7 +56,7 @@ else if(this.props.y>192 && this.props.x>128 && this.props.x<192){this.setState(
 else{this.setState(previousState=>({kekadu:this.props.RRest}))}}
 stop=()=>clearTimeout(this.walking)
 render(){return(<View style={{flex:1}}><View style={{height:'70%',width:'100%',backgroundColor:"green",flexDirection:"row"}}>
-<Image source={this.state.kekadu} style={{position:'absolute',x:this.props.x,y:this.props.y,height:32,width:32}}/>
+<Image source={this.state.kekadu} style={{position:'absolute',left:this.props.x,top:this.props.y,height:32,width:32}}/>
 <Image source={this.state.Monkey} style={{position:'absolute',left:160,top:240,height:32,width:32}}/>
 
 <Image source={this.props.Tree} style={{top:32,left:32,height:64,width:64,position:'absolute'}}/>

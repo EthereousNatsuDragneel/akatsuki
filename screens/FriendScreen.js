@@ -62,9 +62,15 @@ else{this.setState(previousState=>({kekadu:this.props.RWalk2,hAlternate:1,c:-1})
 this.props.kright()}
 this.walking=setTimeout(this.walkRight,300)}
 else if(this.props.y>208 && this.props.x>208){this.setState({rabbit:this.props.LRabbit})
-if(this.props.BananaCount==1){this.props.GiveBanana()}
-else if(this.props.CarrotCount==1){this.props.GiveCarrot()}
-else if(this.props.MedicineCount==1){this.props.GiveMedicine()}
+if(this.props.BananaCount==1){this.props.GiveBanana()
+this.props.uh()
+this.props.new()}
+else if(this.props.CarrotCount==1){this.props.GiveCarrot()
+this.props.uh()
+this.props.new()}
+else if(this.props.MedicineCount==1){this.props.GiveMedicine()
+this.props.uh()
+this.props.new()}
 else{this.props.navigation.navigate('RabbitFace')}
 this.props.navigation.navigate('RabbitFace')}
 else{this.setState(previousState=>({kekadu:this.props.RRest}))}}
@@ -102,7 +108,7 @@ function mapStateToProps(state){
 return{up:state.up,down:state.down,right:state.right,left:state.left,DRest:state.DRest,DWalk1:state.DWalk1,DWalk2:state.DWalk2,FRest:state.FRest,FWalk1:state.FWalk1,FWalk2:state.FWalk2,LRest:state.LRest,LWalk1:state.LWalk1,LWalk2:state.LWalk2,RRest:state.RRest,RWalk1:state.RWalk1,RWalk2:state.RWalk2,Tree:state.Tree,x:state.x,y:state.y,BananaCount:state.BananaCount,CarrotCount:state.CarrotCount,MedicineCount:state.MedicineCount,LRabbit:state.LRabbit,FRabbit:state.FRabbit,talk:state.talk}}
 
 function mapDispatchToProps(dispatch){
-return{GoLeft1:()=>dispatch({type:'Go_Left1'}),GiveBanana:()=>dispatch({type:'Give_Banana'}),GiveCarrot:()=>({type:'Give_Carrot'}),GiveMedicine:()=>dispatch({type:'Give_Medicine'}),new:()=>dispatch({type:'new'}),GoUp1:()=>dispatch({type:'Go_Up1'}),
+return{GoLeft1:()=>dispatch({type:'Go_Left1'}),GiveBanana:()=>dispatch({type:'Give_Banana'}),GiveCarrot:()=>({type:'Give_Carrot'}),GiveMedicine:()=>dispatch({type:'Give_Medicine'}),new:()=>dispatch({type:'new'}),GoUp1:()=>dispatch({type:'Go_Up1'}),uh:()=>dispatch({type:'uh'}),
 kleft:()=>dispatch({type:'kleft'}),kright:()=>dispatch({type:'kright'}),kup:()=>dispatch({type:'kup'}),kdown:()=>dispatch({type:'kdown'})}}
 
 export default connect(mapStateToProps,mapDispatchToProps)(FriendScreen)

@@ -15,8 +15,8 @@ this.props.kdown()}
 else{this.setState(previousState=>({kekadu:this.props.DWalk2,vAlternate:1,c:-1}))
 this.props.kdown()}
 this.walking=setTimeout(this.walkDown,300)
-if(this.props.y>304){this.props.GoUp1(
-this.props.navigation.navigate('Up1'))}}
+if(this.props.y>304){this.props.GoUp1()
+this.props.navigation.navigate('Up1')}}
 else{this.setState(previousState=>({kekadu:this.props.DRest}))}}
 walkUp=()=>{if(this.props.y>144 || (this.props.x>80 && this.props.x<240)){
 //walkUp code
@@ -59,7 +59,7 @@ this.props.navigation.navigate('Up2Right1')}}
 else{this.setState(previousState=>({kekadu:this.props.RRest}))}}
 stop=()=>clearTimeout(this.walking)
 render(){return(<View style={{flex:1}}><View style={{height:'70%',width:'100%',backgroundColor:"green",flexDirection:"row"}}>
-<Image source={this.state.kekadu} style={{position:'absolute',x:this.props.x,y:this.props.y,height:32,width:32}}/>
+<Image source={this.state.kekadu} style={{position:'absolute',left:this.props.x,top:this.props.y,height:32,width:32}}/>
 
 <Image source={this.props.Tree} style={{position:'absolute',top:32,left:32,height:64,width:64}}/>
 <Image source={this.props.Tree} style={{position:'absolute',top:96,left:32,height:64,width:64}}/>

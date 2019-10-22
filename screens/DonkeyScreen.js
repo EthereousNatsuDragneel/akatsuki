@@ -18,7 +18,7 @@ this.walking=setTimeout(this.walkDown,300)}
 else{this.setState(previousState=>({kekadu:this.props.DRest}))
 this.props.GoLeft2()
 this.props.navigation.navigate('Left2')}}
-walkUp=()=>{if(this.props.y>112 || (this.props.x<128 && this.props.y>80) || (this.props.x>192 && this.props.y>80)){
+walkUp=()=>{if(this.props.y>112 || (this.props.y>80 && (this.props.x<128 || this.props.x>176))){
 //walkUp code
 if(this.state.vAlternate==0){
 this.setState(previousState=>({c:1,vAlternate:1,kekadu:this.props.FWalk1}))
@@ -29,10 +29,10 @@ else{this.setState(previousState=>({kekadu:this.props.FWalk2,vAlternate:1,c:-1})
 this.props.kup()}
 this.walking=setTimeout(this.walkUp,300)}
 //enter donkeygame down
-else if(this.props.x>128 && this.props.x<192 && this.props.y<128){this.setState({donkey:this.props.DDonkey})
-if(this.props.animal==1 && thisprops.gotItem==0){this.props.navigation.navigate('DonkeyGame')}}
+else if(this.props.x>128 && this.props.x<176 && this.props.y<128){this.setState({donkey:this.props.DDonkey})
+if(this.props.animal==1 && this.props.gotItem==0){this.props.navigation.navigate('DonkeyGame')}}
 else{this.setState(previousState=>({kekadu:this.props.FRest}))}}
-walkLeft=()=>{if((this.props.x>80 && this.props.y>112) || (this.props.y>80 && this.props.x>192) || (this.props.y>80 && this.props.x<128 && this.props.x>80)){
+walkLeft=()=>{if((this.props.x>80 && this.props.y>112) || (this.props.y>80 && (this.props.x>192 || (this.props.x<128 && this.props.x>80)))){
 //walkLeft Code
 if(this.state.hAlternate==0){
 this.setState(previousState=>({c:1,hAlternate:1,kekadu:this.props.LWalk1}))
@@ -45,7 +45,7 @@ this.walking=setTimeout(this.walkLeft,300)}
 else if(this.props.y<100 && this.props.x>128 && this.props.x<192){this.setState({donkey:this.props.RDonkey})
 if(this.props.animal==1 && this.props.gotItem==0){this.props.navigation.navigate('DonkeyGame')}}
 else{this.setState(previousState=>({kekadu:this.props.LRest}))}}
-walkRight=()=>{if((this.props.x<240 && this.props.y>112) || (this.props.y>80 && this.props.x>192 && this.props.x<240) || (this.props.y>80 && this.props.x<128)){
+walkRight=()=>{if((this.props.x<240 && this.props.y>128) || (this.props.y>80 && ((this.props.x>192 && this.props.x<240) || this.props.x<128))){
 //walkRight code
 if(this.state.hAlternate==0){
 this.setState(previousState=>({c:1,hAlternate:1,kekadu:this.props.RWalk1}))
@@ -60,8 +60,8 @@ if(this.props.animal==1 && this.props.gotItem==0){this.props.navigation.navigate
 else{this.setState(previousState=>({kekadu:this.props.RRest}))}}
 stop=()=>clearTimeout(this.walking)
 render(){return(<View style={{flex:1}}><View style={{height:'70%',width:'100%',backgroundColor:"green",flexDirection:"row"}}>
-<Image source={this.state.kekadu} style={{position:'absolute',x:this.props.x,y:this.props.y,height:32,width:32}}/>
-<Image source={this.state.donkey} style={{position:'absolute',left:160,top:128,height:32,width:32}}/>
+<Image source={this.state.kekadu} style={{position:'absolute',left:this.props.x,top:this.props.y,height:32,width:32}}/>
+<Image source={this.state.donkey} style={{position:'absolute',left:160,top:80,height:32,width:32}}/>
 
 <Image source={this.props.Tree} style={{top:32,left:32,height:64,width:64,position:'absolute'}}/>
 <Image source={this.props.Tree} style={{top:32,left:288,height:64,width:64,position:'absolute'}}/>
@@ -93,7 +93,7 @@ render(){return(<View style={{flex:1}}><View style={{height:'70%',width:'100%',b
 
 function mapStateToProps(state){
 return{up:state.up,down:state.down,right:state.right,left:state.left,DRest:state.DRest,DWalk1:state.DWalk1,DWalk2:state.DWalk2,FRest:state.FRest,FWalk1:state.FWalk1,FWalk2:state.FWalk2,LRest:state.LRest,LWalk1:state.LWalk1,LWalk2:state.LWalk2,RRest:state.RRest,RWalk1:state.RWalk1,RWalk2:state.RWalk2,Tree:state.Tree,x:state.x,y:state.y,
-DDonkey:state.DDonkey,FDonkey:state.FDonkey,LDonkey:state.LDonkey,RDonkey:state.RDonkey,animal:state.animal,gotItem:state.gotItem,gotItem:state.gotItem}}
+DDonkey:state.DDonkey,FDonkey:state.FDonkey,LDonkey:state.LDonkey,RDonkey:state.RDonkey,animal:state.animal,gotItem:state.gotItem}}
 
 function mapDispatchToProps(dispatch){
 return{GoLeft2:()=>dispatch({type:'Go_Left2'}),

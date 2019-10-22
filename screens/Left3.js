@@ -56,7 +56,7 @@ this.props.GoLeft2()
 this.props.navigation.navigate('Left2')}}
 stop=()=>clearTimeout(this.walking)
 render(){return(<View style={{flex:1}}><View style={{height:'70%',width:'100%',backgroundColor:"green",flexDirection:"row"}}>
-<Image source={this.state.kekadu} style={{position:'absolute',x:this.props.x,y:this.props.y,height:32,width:32}}/>
+<Image source={this.state.kekadu} style={{position:'absolute',left:this.props.x,top:this.props.y,height:32,width:32}}/>
 <Image source={this.props.Tree} style={{top:32,left:32,height:64,width:64,position:'absolute'}}/>
 <Image source={this.props.Tree} style={{top:32,left:288,height:64,width:64,position:'absolute'}}/>
 <Image source={this.props.Tree} style={{top:32,left:224,height:64,width:64,position:'absolute'}}/>

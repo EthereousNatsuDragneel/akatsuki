@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 class ItemsScreen extends Component{
 render(){if(this.props.itemPic!=null){return(<View style={{flex:1,justifyContent:"center",alignItems:"center"}}>
 <Text style={{fontSize:50,textAlign:"center",color:"white"}}>ITEMS</Text>
-<Image source={this.props.itemPic} style={{height:128,width:128}}/>
+<Image source={this.props.itemPic} style={{height:'100%',width:'100%'}}/>
 </View>)}
 return(<View style={{flex:1,justifyContent:"center",alignItems:"center",backgroundColor:"black"}}>
 <Text style={{fontSize:50,textAlign:"center",color:"white"}}>ITEMS{'\n'}</Text>

@@ -58,7 +58,7 @@ if(this.props.animal==2 && this.props.gotItem==0){this.props.navigation.navigate
 else{this.setState(previousState=>({kekadu:this.props.RRest}))}}
 stop=()=>clearTimeout(this.walking)
 render(){return(<View style={{flex:1}}><View style={{height:'70%',width:'100%',backgroundColor:"green",flexDirection:"row"}}>
-<Image source={this.state.kekadu} style={{position:'absolute',x:this.props.x,y:this.props.y,height:32,width:32}}/>
+<Image source={this.state.kekadu} style={{position:'absolute',left:this.props.x,top:this.props.y,height:32,width:32}}/>
 <Image source={this.state.fox} style={{position:'absolute',left:224,top:144,height:32,width:32}}/>
 <Image source={this.props.Tree} style={{top:32,left:32,height:64,width:64,position:'absolute'}}/>
 <Image source={this.props.Tree} style={{top:32,left:288,height:64,width:64,position:'absolute'}}/>
@@ -94,7 +94,7 @@ render(){return(<View style={{flex:1}}><View style={{height:'70%',width:'100%',b
 </View></View>)}}
 
 function mapStateToProps(state){
-return{up:state.up,down:state.down,right:state.right,left:state.left,DRest:state.DRest,DWalk1:state.DWalk1,DWalk2:state.DWalk2,FRest:state.FRest,FWalk1:state.FWalk1,FWalk2:state.FWalk2,LRest:state.LRest,LWalk1:state.LWalk1,LWalk2:state.LWalk2,RRest:state.RRest,RWalk1:state.RWalk1,RWalk2:state.RWalk2,Tree:state.Tree,x:state.x,y:state.y,LFox:state.LFox,DFox:state.DFox,gotItem:state.gotItem}}
+return{up:state.up,down:state.down,right:state.right,left:state.left,DRest:state.DRest,DWalk1:state.DWalk1,DWalk2:state.DWalk2,FRest:state.FRest,FWalk1:state.FWalk1,FWalk2:state.FWalk2,LRest:state.LRest,LWalk1:state.LWalk1,LWalk2:state.LWalk2,RRest:state.RRest,RWalk1:state.RWalk1,RWalk2:state.RWalk2,Tree:state.Tree,x:state.x,y:state.y,LFox:state.LFox,DFox:state.DFox,gotItem:state.gotItem,animal:state.animal}}
 
 function mapDispatchToProps(dispatch){
 return{GoUp3Right1:()=>dispatch({type:'Go_Up3Right1'}),
