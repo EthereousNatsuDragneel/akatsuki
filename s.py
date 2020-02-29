@@ -1,7 +1,7 @@
 def getGraph():
 	global explored,distances
 	explored=[]
-	distances={1:0}
+	distances={}
 	g={}
 	f=open("dijkstraData.txt",'r')
 	lines=f.readlines()
@@ -38,6 +38,8 @@ def getGraph():
 
 def dijkstra(source):
 	global explored,g,distances
+	if(len(explored)==0):
+		distances[source]=0
 	temp=[]
 	explored.append(source)
 	for i in range(0,len(g[source])):
@@ -55,8 +57,6 @@ def dijkstra(source):
 
 
 g=getGraph()
-dijkstra(1)
-dijkstra(1)
 dijkstra(1)
 print(distances[7],distances[37],distances[59],distances[82],distances[99],distances[115],distances[133],distances[165],distances[188],distances[197])
 #print(g)
