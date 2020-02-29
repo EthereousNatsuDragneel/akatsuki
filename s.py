@@ -31,6 +31,8 @@ def getGraph():
 				t=[]
 			else:
 				z=z+line[i]
+		t.append(int(z))
+		g[int(x)].append(t)
 	return g
 	#return {1:[[2,2],[3,4]],2:[[1,2],[3,1],[4,4],[5,5]],3:[[1,4],[2,1],[4,2],[5,3]],4:[[3,2]],5:[[3,3],[4,1]]}
 
@@ -57,3 +59,4 @@ dijkstra(1)
 dijkstra(1)
 dijkstra(1)
 print(distances[7],distances[37],distances[59],distances[82],distances[99],distances[115],distances[133],distances[165],distances[188],distances[197])
+#print(g)
